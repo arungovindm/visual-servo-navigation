@@ -1,0 +1,17 @@
+import cv2
+import argparse as ap
+import numpy as np
+from visualservo.driver import *
+import os
+
+#parse relative camera pose
+parser = ap.ArgumentParser()
+parser.add_argument('x',type=float)
+parser.add_argument('y',type=float)
+parser.add_argument('z',type=float)
+args = parser.parse_args()
+
+#read target image(to be warped) and ground truth(to be warped into this)
+src = cv2.imread(os.getcwd()+r'/data/target.jpg',0)
+ground_truth = cv2.imread(os.getcwd()+r'/data/image_0.0_1.8_2.8_.jpg',0)
+driverCode(args,src,ground_truth)
